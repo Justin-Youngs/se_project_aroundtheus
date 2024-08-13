@@ -6,50 +6,50 @@
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-columns: minmax(auto, 375px) auto;
+
+  align-items: baseline;
 }
 .profile__edit-button {
-  background: transparent url("../images/Edit\ \ button\ \(1\).png") center
-    no-repeat;
+  background: transparent url("../images/Edit-button.png") center no-repeat;
   height: 24px;
   width: 24px;
   grid-area: button;
   border-color: white;
+  margin: 15px 0 9px 18px;
+}
+.profile__edit-button:hover {
+  opacity: 60%;
 }
 .profile__add-button {
-  background: transparent url("../images/Add\ Button\ \(1\).png") center
-    no-repeat;
+  background: transparent url("../images/Add-button.png") center no-repeat;
   height: 50px;
   width: 150px;
   margin-left: auto;
-  border: 2px;
   border-color: white;
   border-radius: 2px;
 }
-.profile__titile {
-  font-size: 42px;
-  line-height: 48px;
-  font-weight: 500;
+.profile__add-button:hover {
+  opacity: 60%;
+}
+.profile__title {
   grid-area: title;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin: 22px 18px 50px 30px;
-  font-family: inter;
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
 }
 .profile__description {
-  font-size: 18px;
-  line-height: 21.78px;
-  font-weight: 400;
   grid-area: description;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin: 0;
-  font-family: inter;
+  margin: 9px 0 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 21.78px;
@@ -65,6 +65,14 @@
 @media screen and (max-width: 480px) {
   .profile {
     flex-direction: column;
+    max-width: 282px;
+  }
+  .profile__title {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26.63px;
+    text-align: center;
   }
 
   .profile__info {
@@ -72,11 +80,38 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+    align-content: center;
   }
 
   .profile__description {
     width: 100%;
     text-align: center;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .profile {
+    flex-direction: column;
+    max-width: 581px;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    margin-top: 26.25px;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+    margin: 14px 0 36px;
   }
 
   .profile__add-button {

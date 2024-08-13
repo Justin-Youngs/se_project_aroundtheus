@@ -30,10 +30,13 @@
   border-bottom-right-radius: 10px;
 }
 .card__like-button {
-  background: transparent url("../images/Vector\ \(2\).svg") center no-repeat;
+  background: transparent url("../images/like-button.svg") center no-repeat;
   height: 18px;
   width: 21px;
   border: none;
+}
+.card__like-button:hover {
+  opacity: 50%;
 }
 
 .card__title {
@@ -45,4 +48,5 @@
   white-space: nowrap;
   overflow: hidden;
   margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
