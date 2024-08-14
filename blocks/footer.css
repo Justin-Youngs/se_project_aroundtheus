@@ -7,17 +7,47 @@
   margin: 67px auto 60px;
 }
 @media screen and (max-width: 480px) {
-  .footer__copywright {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16.94px;
-    margin-top: 48px;
+  .profile {
+    flex-direction: column;
     max-width: 282px;
   }
+  .profile__title {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26.63px;
+    text-align: center;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
 }
+
 @media screen and (max-width: 800px) {
   .footer__copywright {
     max-width: 581px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .footer__copywright {
+    max-width: 282px;
+    margin-top: 48px;
+    font-size: 14px;
+    line-height: 16.94px;
   }
 }

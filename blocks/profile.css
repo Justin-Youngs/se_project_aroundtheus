@@ -15,8 +15,10 @@
   height: 24px;
   width: 24px;
   grid-area: button;
-  border-color: white;
+  border-radius: 1px;
+  border: solid 1px rgba(255, 255, 255, 1);
   margin: 15px 0 9px 18px;
+  cursor: pointer;
 }
 .profile__edit-button:hover {
   opacity: 60%;
@@ -26,8 +28,9 @@
   height: 50px;
   width: 150px;
   margin-left: auto;
-  border-color: white;
   border-radius: 2px;
+  border: solid 2px rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 .profile__add-button:hover {
   opacity: 60%;
@@ -62,37 +65,7 @@
   background-position: center;
   margin-right: 24px;
 }
-@media screen and (max-width: 480px) {
-  .profile {
-    flex-direction: column;
-    max-width: 282px;
-  }
-  .profile__title {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 26.63px;
-    text-align: center;
-  }
 
-  .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .profile__description {
-    width: 100%;
-    text-align: center;
-  }
-
-  .profile__add-button {
-    margin: 0;
-    width: 100%;
-  }
-}
 @media screen and (max-width: 800px) {
   .profile {
     flex-direction: column;
@@ -117,5 +90,49 @@
   .profile__add-button {
     margin: 0;
     width: 100%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .profile {
+    flex-direction: column;
+    max-width: 282px;
+  }
+  .profile__title {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26.63px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+  }
+
+  .profile__description {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+    height: 50px;
+    width: 282px;
+  }
+  .profile__edit-button {
+    height: 18px;
+    width: 18px;
+    margin: 0 0 0 10px;
+  }
+  .profile__image {
+    margin: 0;
   }
 }
