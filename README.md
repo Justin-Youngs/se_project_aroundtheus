@@ -8,3 +8,7 @@ Some of the techniques used in this project were grid layout, flex box, bem meth
 ![Around The U.S.](320px.PNG)
 ![Around The U.S.](800px.PNG)
 ![Around The U.S.](1280px.PNG)
+
+# Git hub pages link
+
+[Link to my project](https://justin-youngs.github.io/se_project_aroundtheus)
