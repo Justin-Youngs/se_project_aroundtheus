@@ -80,6 +80,9 @@
     align-content: center;
     margin-top: 26.25px;
   }
+  .profile__title {
+    max-width: 539px;
+  }
 
   .profile__description {
     width: 100%;
@@ -97,6 +100,7 @@
     max-width: 282px;
   }
   .profile__title {
+    max-width: 254px;
     font-size: 22px;
     line-height: 26.63px;
     text-align: center;
