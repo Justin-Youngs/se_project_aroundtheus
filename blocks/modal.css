@@ -126,6 +126,8 @@
     width: 238px;
     height: 46px;
     margin: 15px 22px 25px;
+    font-size: 14px;
+    line-height: 16.94px;
   }
   .modal__close {
     width: 26px;
