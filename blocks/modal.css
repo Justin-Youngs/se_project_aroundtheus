@@ -25,6 +25,17 @@
   height: 330px;
 }
 
+.modal__container_type_preview {
+  padding: 0;
+}
+
+.modal__image {
+  width: 100%;
+  object-fit: contain;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
 .modal__form {
   height: 330px;
   width: 430px;
@@ -53,6 +64,11 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.modal__close_type_preview {
+  background-image: url(../images/Close\ Icon\ light.png);
+}
+
 .modal__close:hover {
   opacity: 60%;
 }
