@@ -34,6 +34,7 @@ const cardsWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector("#modal-form");
 const addCardModal = document.querySelector("#add-card-modal");
+
 const addCardEditform = addCardModal.querySelector("#modal-add-card-form");
 
 //Buttons and nodes
@@ -58,11 +59,10 @@ const previewModalCloseButton = previewModal.querySelector(
   "#preview-modal-close-button"
 );
 //Form data
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+const profileTitleInput = document.querySelector("#name-input");
+const profileDescriptionInput = document.querySelector("#description-input");
 const cardTitleInput = addCardEditform.querySelector("#add-card-title-input");
+console.log(cardTitleInput);
 const cardUrlInput = addCardEditform.querySelector("#add-card-image-input");
 
 function closeModal(modal) {
@@ -112,6 +112,7 @@ function handleProfileEditSubmit(evt) {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(profileEditModal);
+  profileEditForm.reset();
 }
 
 function handleAddCardEditSubmit(evt) {
@@ -148,3 +149,10 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardEditform.addEventListener("submit", handleAddCardEditSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+document.addEventListener("keydown", (evt) => {
+  const modal = document.querySelector(".modal");
+  if (evt.key === "Escape") {
+    closeModal(modal);
+  }
+});
