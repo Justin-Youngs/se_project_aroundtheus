@@ -133,6 +133,8 @@ function handleProfileEditSubmit(evt) {
   profileEditForm.reset();
 }
 
+const cardSubmitButton = addCardEditform.querySelector(".modal__button");
+
 function handleAddCardEditSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
@@ -140,7 +142,7 @@ function handleAddCardEditSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   addCardEditform.reset();
-  disableButton(addCardEditform, settings);
+  disableButton(cardSubmitButton, settings);
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -150,6 +152,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 profileAddButton.addEventListener("click", () => {
+  resetValidation(profileAddButton, settings);
   openModal(addCardModal);
 });
 
