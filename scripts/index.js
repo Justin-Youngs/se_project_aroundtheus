@@ -65,12 +65,30 @@ const cardTitleInput = addCardEditform.querySelector("#add-card-title-input");
 console.log(cardTitleInput);
 const cardUrlInput = addCardEditform.querySelector("#add-card-image-input");
 
+function handleEscape(evt) {
+  if (evt.key === "Escape") {
+    const activeModal = document.querySelector(".modal_opened");
+    if (activeModal) {
+      closeModal(activeModal);
+    }
+  }
+}
+function closeModalOnOverlay(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
+  document.removeEventListener("click", closeModalOnOverlay);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
+  document.addEventListener("click", closeModalOnOverlay);
 }
 
 function renderCard(cardData, wrapper) {
@@ -149,10 +167,3 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardEditform.addEventListener("submit", handleAddCardEditSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
-
-document.addEventListener("keydown", (evt) => {
-  const modal = document.querySelector(".modal");
-  if (evt.key === "Escape") {
-    closeModal(modal);
-  }
-});
