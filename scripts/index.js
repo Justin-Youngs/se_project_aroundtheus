@@ -148,11 +148,15 @@ function handleAddCardEditSubmit(evt) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  resetValidation(
+    profileEditForm,
+    [profileTitleInput, profileDescriptionInput],
+    settings
+  );
   openModal(profileEditModal);
 });
 
 profileAddButton.addEventListener("click", () => {
-  resetValidation(profileAddButton, settings);
   openModal(addCardModal);
 });
 

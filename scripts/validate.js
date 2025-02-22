@@ -72,7 +72,6 @@ const settings = {
 enableValidation(settings);
 function resetValidation(formEl, inputList, settings) {
   inputList.forEach((input) => {
-    hideInputError(formEl, input, settings);
+    hideInputError(input, formEl, settings);
   });
-  settings;
 }
