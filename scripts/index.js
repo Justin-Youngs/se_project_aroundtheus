@@ -140,6 +140,7 @@ function handleAddCardEditSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   addCardEditform.reset();
+  disableButton(addCardEditform, settings);
 }
 
 profileEditButton.addEventListener("click", () => {
