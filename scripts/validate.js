@@ -61,26 +61,18 @@ enableValidation = (settings) => {
   });
 };
 
-enableValidation({
+const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
-});
+};
+enableValidation(settings);
 function resetValidation(formEl, inputList, settings) {
   inputList.forEach((input) => {
     hideInputError(formEl, input, settings);
   });
+  settings;
 }
-
-const settings = {
-  formSelector: ".modalform",
-  inputSelector: ".modalinput",
-  submitButtonSelector: ".modalbutton",
-  inactiveButtonClass: "modalbutton_disabled",
-  inputErrorClass: "modalinput_type_error",
-  errorClass: "modalerror_visible",
-};
-enableValidation(settings);
