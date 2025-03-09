@@ -8,7 +8,7 @@ class FormValidator {
     this._form = formElement;
   }
 
-  _showInputError(input) {
+  _showInputError(input, validationMessage) {
     const errorSpan = this._form.querySelector("#" + input.id + "-error");
     input.classList.add(this._inputErrorClass);
     errorSpan.textContent = input.validationMessage;
@@ -44,8 +44,8 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    const inputlist = [...formEl.querySelectorAll(settings.inputSelector)];
-    const submitButton = formEl.querySelector(settings.submitButtonSelector);
+    this._inputlist = [...this._form.querySelectorAll(this._inputSelector)];
+    this._submitButton = this._form.querySelector(this._submitButtonSelector);
     inputlist.forEach((input) => {
       input.addEventListener("input", (e) => {
         checkInputValidity(formEl, input, settings);
@@ -55,7 +55,11 @@ class FormValidator {
   }
 
   enableValidation() {
-    this._form;
+    this._form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+
+      this._setEventListeners(formElement, settings);
+    });
   }
 }
 

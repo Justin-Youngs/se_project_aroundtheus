@@ -12,16 +12,11 @@ function handleEscape(evt) {
     }
   }
 }
+
 function closeModalOnOverlay(evt) {
   if (evt.target.classList.contains("modal")) {
     closeModal(evt.target);
   }
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscape);
-  document.removeEventListener("click", closeModalOnOverlay);
 }
 
 function openModal(modal) {
@@ -30,11 +25,17 @@ function openModal(modal) {
   document.addEventListener("click", closeModalOnOverlay);
 }
 
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
+  document.removeEventListener("click", closeModalOnOverlay);
+}
+
 class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
-
+    this._openPreview = openPreview;
     this._cardSelector = cardSelector;
   }
 
@@ -54,7 +55,7 @@ class Card {
 
   _handleLikeIcon() {
     this._element
-      .querySelector(".card__image")
+      .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   }
 
@@ -64,10 +65,7 @@ class Card {
   }
 
   _handlePreviewPicture() {
-    openModal(previewModal);
-    previewModalImageEl.src = this._link;
-    previewModalImageEl.alt = this._name;
-    previewModalCaptionEl.textContent = this._name;
+    this._openPreview;
   }
 
   _getTemplate() {
@@ -81,8 +79,7 @@ class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").style.backgroundImage =
-      "url(${this._link})";
+    this._element.querySelector(".card__image").src = this._link;
     this._element.querySelector(".card__title").textContent = this._name;
 
     return this._element;
@@ -90,4 +87,3 @@ class Card {
 }
 
 export default Card;
-//"url(${this._link})"

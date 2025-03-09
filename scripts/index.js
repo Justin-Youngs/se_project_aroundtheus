@@ -65,7 +65,7 @@ const previewModalCloseButton = previewModal.querySelector(
 const profileTitleInput = document.querySelector("#name-input");
 const profileDescriptionInput = document.querySelector("#description-input");
 const cardTitleInput = addCardEditform.querySelector("#add-card-title-input");
-console.log(cardTitleInput);
+
 const cardUrlInput = addCardEditform.querySelector("#add-card-image-input");
 
 function handleEscape(evt) {
@@ -94,8 +94,15 @@ function openModal(modal) {
   document.addEventListener("click", closeModalOnOverlay);
 }
 
+function openPreview(src, caption) {
+  previewModalImageEl.src = cardData.link;
+  previewModalImageEl.alt = cardData.name;
+  previewModalCaptionEl.textContent = cardData.name;
+  openModal(previewModal);
+}
+
 function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, cardSelector);
+  const card = new Card(cardData, cardSelector, openPreview);
   wrapper.prepend(card.getView());
 }
 
@@ -113,6 +120,18 @@ const validationSettings = {
 
 const editProfileElement = profileEditModal.querySelector(".modal__form");
 const addCardElement = addCardModal.querySelector(".modal__form");
+
+//const editProfileValidator = new FormValidator(
+// validationSettings,
+// editProfileElement
+//);
+//const addCardValidator = new FormValidator(
+// validationSettings,
+//  addCardValidator
+//);
+
+//editProfileValidator.enableValidation();
+//addCardValidator.enableValidation();
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
