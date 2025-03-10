@@ -1,38 +1,5 @@
-const previewModal = document.querySelector("#preview-modal");
-const previewModalImageEl = previewModal.querySelector(".modal__image");
-const previewModalCaptionEl = previewModal.querySelector(
-  ".modal__preview-caption"
-);
-
-function handleEscape(evt) {
-  if (evt.key === "Escape") {
-    const activeModal = document.querySelector(".modal_opened");
-    if (activeModal) {
-      closeModal(activeModal);
-    }
-  }
-}
-
-function closeModalOnOverlay(evt) {
-  if (evt.target.classList.contains("modal")) {
-    closeModal(evt.target);
-  }
-}
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscape);
-  document.addEventListener("click", closeModalOnOverlay);
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscape);
-  document.removeEventListener("click", closeModalOnOverlay);
-}
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, openPreview) {
     this._name = data.name;
     this._link = data.link;
     this._openPreview = openPreview;
@@ -50,7 +17,9 @@ class Card {
 
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewPicture());
+      .addEventListener("click", () =>
+        this._openPreview(this._link, this._name)
+      );
   }
 
   _handleLikeIcon() {
@@ -64,9 +33,7 @@ class Card {
     this._element = null;
   }
 
-  _handlePreviewPicture() {
-    this._openPreview;
-  }
+  //_handlePreviewPicture() {}
 
   _getTemplate() {
     return document
