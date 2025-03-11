@@ -1,5 +1,5 @@
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -96,9 +96,14 @@ function openPreview(src, caption) {
   openModal(previewModal);
 }
 
-function renderCard(cardData, wrapper) {
+function createCard(cardData) {
   const card = new Card(cardData, cardSelector, openPreview);
-  wrapper.prepend(card.getView());
+  return card.getView();
+}
+
+function renderCard(cardData, wrapper) {
+  const cardElement = createCard(cardData);
+  wrapper.prepend(cardElement);
 }
 
 const cardSelector = "#card-template";
@@ -113,14 +118,11 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-const editProfileElement = profileEditModal.querySelector(".modal__form");
-const addCardElement = addCardModal.querySelector(".modal__form");
-
 const editProfileValidator = new FormValidator(
   validationSettings,
-  editProfileElement
+  profileEditForm
 );
-const addCardValidator = new FormValidator(validationSettings, addCardElement);
+const addCardValidator = new FormValidator(validationSettings, addCardEditform);
 
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
@@ -133,8 +135,6 @@ function handleProfileEditSubmit(evt) {
   profileEditForm.reset();
 }
 
-const cardSubmitButton = addCardEditform.querySelector(".modal__button");
-
 function handleAddCardEditSubmit(evt) {
   evt.preventDefault();
   const name = cardTitleInput.value;
@@ -142,17 +142,13 @@ function handleAddCardEditSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   addCardEditform.reset();
-  addCardValidator.disableButton(cardSubmitButton);
+  addCardValidator.disableButton();
 }
 
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  editProfileValidator.resetValidation(
-    profileEditForm,
-    [profileTitleInput, profileDescriptionInput],
-    validationSettings
-  );
+  editProfileValidator.resetValidation();
   openModal(profileEditModal);
 });
 

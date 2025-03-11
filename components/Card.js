@@ -2,6 +2,7 @@ class Card {
   constructor(data, cardSelector, openPreview) {
     this._name = data.name;
     this._link = data.link;
+
     this._openPreview = openPreview;
     this._cardSelector = cardSelector;
   }
@@ -15,11 +16,9 @@ class Card {
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
 
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () =>
-        this._openPreview(this._link, this._name)
-      );
+    this._imageElement.addEventListener("click", () =>
+      this._openPreview(this._link, this._name)
+    );
   }
 
   _handleLikeIcon() {
@@ -33,8 +32,6 @@ class Card {
     this._element = null;
   }
 
-  //_handlePreviewPicture() {}
-
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
@@ -44,9 +41,11 @@ class Card {
 
   getView() {
     this._element = this._getTemplate();
+    this._imageElement = this._element.querySelector(".card__image");
     this._setEventListeners();
 
-    this._element.querySelector(".card__image").src = this._link;
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
 
     return this._element;
