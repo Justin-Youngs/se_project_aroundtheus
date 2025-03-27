@@ -16,9 +16,9 @@ class Card {
       .querySelector(".card__delete-button")
       .addEventListener("click", () => this._handleDeleteCard());
 
-    this._imageElement.addEventListener("click", () =>
-      this._openPreview(this._link, this._name)
-    );
+    this._imageElement.addEventListener("click", () => {
+      this._openPreview({ name: this._name, link: this._link });
+    });
   }
 
   _handleLikeIcon() {
@@ -43,7 +43,7 @@ class Card {
     this._element = this._getTemplate();
     this._imageElement = this._element.querySelector(".card__image");
     this._setEventListeners();
-
+    console.log(this._link);
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
