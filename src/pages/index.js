@@ -3,8 +3,17 @@ import Card from "../components/Card.js";
 import "./index.css";
 import { initialCards, validationSettings } from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-
 import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+
+const cardSection = new Section({
+  items: initialCards,
+  renderer: renderCard,
+  containerSelector: ".cards__list",
+});
+
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const imagePopup = new PopupWithImage("#preview-modal");
 imagePopup.setEventListeners();
@@ -29,9 +38,9 @@ function createCard(cardData) {
   return card.getView();
 }
 
-function renderCard(cardData, wrapper) {
+function renderCard(cardData) {
   const cardElement = createCard(cardData);
-  wrapper.prepend(cardElement);
+  cardSection.addItem(cardElement);
 }
 
 const cardSelector = "#card-template";
@@ -41,9 +50,6 @@ const cardsWrap = document.querySelector(".cards__list");
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileAddButton = document.querySelector(".profile__add-button");
-
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
 
 //validation//
 
@@ -60,8 +66,7 @@ editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
 
 function handleProfileEditSubmit(formValues) {
-  profileTitle.textContent = formValues.name;
-  profileDescription.textContent = formValues.description;
+  userInfo.setUserInfo({ name: formValues.name, job: formValues.description });
   profileEditPopup.close();
 }
 
@@ -78,9 +83,10 @@ function handleAddCardEditSubmit(formValues) {
 }
 
 profileEditButton.addEventListener("click", () => {
+  const profileValues = userInfo.getUserInfo();
   profileEditPopup.setInputValues({
-    name: profileTitle.textContent,
-    description: profileDescription.textContent,
+    name: profileValues.name,
+    description: profileValues.job,
   });
   editProfileValidator.resetValidation();
   profileEditPopup.open();
@@ -90,4 +96,4 @@ profileAddButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+cardSection.renderItems();
