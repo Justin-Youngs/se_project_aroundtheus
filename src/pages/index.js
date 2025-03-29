@@ -89,6 +89,7 @@ profileEditButton.addEventListener("click", () => {
     description: profileValues.job,
   });
   editProfileValidator.resetValidation();
+
   profileEditPopup.open();
 });
 

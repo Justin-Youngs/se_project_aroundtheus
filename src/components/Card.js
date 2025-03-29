@@ -43,7 +43,7 @@ class Card {
     this._element = this._getTemplate();
     this._imageElement = this._element.querySelector(".card__image");
     this._setEventListeners();
-    console.log(this._link);
+
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
