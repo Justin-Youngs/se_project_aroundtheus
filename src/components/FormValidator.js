@@ -49,7 +49,6 @@ class FormValidator {
 
   _checkInputValidity(input) {
     if (input.validity.valid) {
-      console.log("valid");
       this._hideInputError(input);
     } else {
       this._showInputError(input);
