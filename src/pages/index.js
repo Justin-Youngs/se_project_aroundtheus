@@ -129,7 +129,7 @@ function handleProfileEditSubmit(formValues) {
 
 // Handle Add Card
 function handleAddCardEditSubmit(formValues) {
-  this.renderLoading(true, "Create", "Creating...");
+  newCardPopup.renderLoading(true, "Create", "Creating...");
   return api
     .createCard(formValues.title, formValues.link)
     .then((cardData) => {
@@ -139,7 +139,7 @@ function handleAddCardEditSubmit(formValues) {
     })
     .catch((err) => console.error(`Error: ${err}`))
     .finally(() => {
-      this.renderLoading(false, "Create");
+      newCardPopup.renderLoading(false, "Create");
     });
 }
 
@@ -154,6 +154,7 @@ function handleProfileImageSubmit(formValues) {
         avatar: userData.avatar,
       });
       profileImagePopup.close();
+      profileImageValidator.disableButton();
     })
     .catch((err) => console.error(err));
 }
@@ -167,7 +168,7 @@ function handleDeleteButtonClick(cardId, cardElement) {
 
 // Handle Card Deletion
 function handleCardDelete() {
-  this.renderLoading(true, "Yes", "Deleting...");
+  deleteCardPopup.renderLoading(true, "Yes", "Deleting...");
   return api
     .deleteCard(currentCardId)
     .then(() => {
@@ -178,7 +179,7 @@ function handleCardDelete() {
     })
     .catch((err) => console.error(err))
     .finally(() => {
-      this.renderLoading(false, "Yes");
+      deleteCardPopup.renderLoading(false, "Yes");
     });
 }
 

@@ -3,8 +3,9 @@ class Card {
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
-    this._ownerId = data.owner; //
-    this._userId = userId; //
+    this._isLiked = data.isLiked;
+    this._ownerId = data.owner;
+    this._userId = userId;
     this._openPreview = openPreview;
     this._cardSelector = cardSelector;
     this._api = api;
@@ -28,9 +29,17 @@ class Card {
   }
 
   _handleLikeIcon() {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    const likeButton = this._element.querySelector(".card__like-button");
+
+    if (likeButton.classList.contains("card__like-button_active")) {
+      this._api.dislikeCard(this._id).then(() => {
+        likeButton.classList.remove("card__like-button_active");
+      });
+    } else {
+      this._api.likeCard(this._id).then(() => {
+        likeButton.classList.add("card__like-button_active");
+      });
+    }
   }
 
   _getTemplate() {
@@ -46,10 +55,14 @@ class Card {
     this._element = this._getTemplate();
     this._imageElement = this._element.querySelector(".card__image");
     const deleteButton = this._element.querySelector(".card__delete-button");
+    const likeButton = this._element.querySelector(".card__like-button");
     if (this._isOwner()) {
       deleteButton.style.display = "block";
     } else {
       deleteButton.style.display = "none";
+    }
+    if (this._isLiked) {
+      likeButton.classList.add("card__like-button_active");
     }
     this._setEventListeners();
     this._imageElement.src = this._link;
